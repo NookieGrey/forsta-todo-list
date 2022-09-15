@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 
 type TodoInputProps = {
   addTodo: (text: string) => void;
 };
 
-export const TodoInput = ({ addTodo }: TodoInputProps) => {
+export const TodoInput: FC<TodoInputProps> = ({ addTodo }) => {
   const [value, setValue] = useState("");
   return (
     <form className="addTodo">
@@ -16,7 +16,10 @@ export const TodoInput = ({ addTodo }: TodoInputProps) => {
       />
       <button
         type="button"
-        onClick={() => addTodo(value)}
+        onClick={() => {
+          addTodo(value);
+          setValue("");
+        }}
         data-testid={`add-button`}
       >
         Add
